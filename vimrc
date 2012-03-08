@@ -182,7 +182,7 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
-set autoindent
+set cindent
 
 "folding settings
 set foldmethod=indent   "fold based on indent
@@ -260,7 +260,12 @@ else
         set term=gnome-256color
         colorscheme railscasts
     else
-        colorscheme default
+        if $TERM == 'xterm'
+            set term=xterm-256color
+            colorscheme railscasts
+        else
+            colorscheme default
+        endif
     endif
 endif
 
@@ -424,6 +429,7 @@ let g:user_zen_settings = {
 
 " when press { + Enter, the {} block will expand.
 imap {<CR> {}<ESC>i<CR><ESC>O
+imap (<CR> ()<ESC>i<CR><ESC>O
 
 " NERDTree settings
 nmap wm :NERDTree<cr>
